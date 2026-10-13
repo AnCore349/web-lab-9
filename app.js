@@ -1,12 +1,26 @@
-const colors = ["green", "red", "rgba(133,122,200)", "#f15025"];
+let count = 0;
 
-const button = document.getElementById("btn");
-const color = document.querySelector(".color");
+const value = document.getElementById("value");
+const decreaseButton = document.getElementById("decrease");
+const resetButton = document.getElementById("reset");
+const increaseButton = document.getElementById("increase");
 
-button.addEventListener("click", () => {
-  const randomIndex = Math.floor(Math.random() * colors.length);
-  const selectedColor = colors[randomIndex];
+function renderCount() {
+  value.textContent = count;
+  value.style.color = count < 0 ? "red" : count > 0 ? "green" : "#222";
+}
 
-  document.body.style.backgroundColor = selectedColor;
-  color.textContent = selectedColor;
+decreaseButton.addEventListener("click", () => {
+  count -= 1;
+  renderCount();
+});
+
+resetButton.addEventListener("click", () => {
+  count = 0;
+  renderCount();
+});
+
+increaseButton.addEventListener("click", () => {
+  count += 1;
+  renderCount();
 });
